@@ -35,6 +35,13 @@ export default function Home() {
           </select>
 
           <p style={baseStyles.helpText}>{info || "설명 종류를 선택해 주세요."}</p>
+        </div>
+
+        <div style={baseStyles.card} className="anim anim-fade-up anim-delay-2">
+          <h2 style={baseStyles.cardTitle}>다음 단계</h2>
+          <p style={baseStyles.helpText}>
+            아래 버튼을 눌러 분리수거의 이유를 더 읽어보거나, 종류를 검색하고, 퀴즈로 연습해 보세요.
+          </p>
 
           <div style={baseStyles.actionsRow}>
             <Link href="/why" className="btn btn-secondary">
