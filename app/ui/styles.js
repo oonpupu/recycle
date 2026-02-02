@@ -1,0 +1,113 @@
+
+export const baseStyles = {
+  page: {
+    minHeight: "100vh",
+    padding: "32px 20px 48px",
+  },
+  header: {
+    maxWidth: "1100px",
+    margin: "0 auto 18px",
+    display: "flex",
+    alignItems: "center",
+    gap: "14px",
+  },
+  badge: {
+    width: "44px",
+    height: "44px",
+    borderRadius: "12px",
+    display: "grid",
+    placeItems: "center",
+    background: "rgba(255,255,255,0.75)",
+    border: "1px solid rgba(0,0,0,0.06)",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+    fontSize: "20px",
+  },
+  title: {
+    margin: 0,
+    fontSize: "26px",
+    letterSpacing: "-0.02em",
+  },
+  subtitle: {
+    margin: "4px 0 0",
+    color: "rgba(0,0,0,0.6)",
+    lineHeight: 1.4,
+  },
+  container: {
+    maxWidth: "1100px",
+    margin: "0 auto",
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "18px",
+    alignItems: "stretch",
+  },
+  card: {
+    flex: "1 1 380px",
+    background: "rgba(255,255,255,0.8)",
+    padding: "18px",
+    borderRadius: "16px",
+    border: "1px solid rgba(0,0,0,0.06)",
+    boxShadow: "0 18px 50px rgba(0,0,0,0.10)",
+    backdropFilter: "blur(10px)",
+  },
+  cardTitle: {
+    margin: "0 0 12px",
+    fontSize: "18px",
+    letterSpacing: "-0.01em",
+  },
+  helpText: {
+    margin: "12px 0 0",
+    color: "rgba(0,0,0,0.72)",
+    lineHeight: 1.5,
+  },
+  quizHeader: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: "12px",
+    marginBottom: "12px",
+  },
+  quizPill: {
+    fontSize: "12px",
+    padding: "6px 10px",
+    borderRadius: "999px",
+    background: "rgba(0,0,0,0.06)",
+    border: "1px solid rgba(0,0,0,0.06)",
+    color: "rgba(0,0,0,0.7)",
+    whiteSpace: "nowrap",
+  },
+  imageFrame: {
+    width: "100%",
+    height: "280px",
+    borderRadius: "14px",
+    overflow: "hidden",
+    background:
+      "linear-gradient(135deg, rgba(16,185,129,0.08), rgba(59,130,246,0.08))",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    border: "1px solid rgba(0,0,0,0.06)",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    objectFit: "contain",
+    display: "block",
+  },
+  question: {
+    margin: "12px 0 10px",
+    fontWeight: 700,
+    letterSpacing: "-0.01em",
+  },
+  options: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "10px",
+  },
+  actionsRow: {
+    marginTop: "14px",
+    display: "flex",
+    gap: "10px",
+    flexWrap: "wrap",
+  },
+};
+

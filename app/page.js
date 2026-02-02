@@ -1,77 +1,54 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { baseStyles } from "./ui/styles";
+import { INFO_TEXT } from "./data/recycling";
 
 export default function Home() {
-  const [text, setText] = useState("");
-
-  function showInfo(item) {
-    if (item === "plastic") setText("Rinse it and put it in the plastic recycling bin.");
-    else if (item === "paper") setText("Remove staples or tape, then recycle as paper.");
-    else if (item === "can") setText("Rinse the can and recycle it with metal waste.");
-    else if (item === "battery") setText("Do NOT throw away. Use a special battery recycling box.");
-    else setText("");
-  }
+  // explanation state
+  const [info, setInfo] = useState("");
 
   return (
-    <main style={styles.page}>
-      <div style={styles.card}>
-        <h1 style={styles.title}>♻ Recycling Helper</h1>
-        <p style={styles.subtitle}>
-          Learn how to recycle common items correctly
-        </p>
+    <main style={baseStyles.page}>
+      <header style={baseStyles.header} className="anim anim-slide-down">
+        <div style={baseStyles.badge}>♻</div>
+        <div>
+          <h1 style={baseStyles.title}>분리수거 지침</h1>
+          <p style={baseStyles.subtitle}>분리수거를 제대로 하는 법을 알아보자</p>
+        </div>
+      </header>
 
-        <select style={styles.select} onChange={(e) => showInfo(e.target.value)}>
-          <option value="">Select an item</option>
-          <option value="plastic">Plastic Bottle</option>
-          <option value="paper">Paper</option>
-          <option value="can">Can</option>
-          <option value="battery">Battery</option>
-        </select>
+      <section style={baseStyles.container}>
+        <div style={baseStyles.card} className="anim anim-fade-up anim-delay-1">
+          <h2 style={baseStyles.cardTitle}>읽어보시오</h2>
 
-        {text && <div style={styles.result}>{text}</div>}
-      </div>
+          <select
+            className="control"
+            onChange={(e) => setInfo(INFO_TEXT[e.target.value] || "")}
+          >
+            <option value="">종류 선택</option>
+            <option value="plastic">플라스틱</option>
+            <option value="can">캔</option>
+            <option value="paper">종이</option>
+            <option value="general">일반</option>
+          </select>
+
+          <p style={baseStyles.helpText}>{info || "설명 종류를 선택해 주세요."}</p>
+
+          <div style={baseStyles.actionsRow}>
+            <Link href="/why" className="btn btn-secondary">
+              분리수거가 필요한 이유
+            </Link>
+            <Link href="/guide" className="btn btn-secondary">
+              종류 검색
+            </Link>
+            <Link href="/quiz" className="btn btn-primary">
+              퀴즈 시작하기
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
-
-const styles = {
-  page: {
-    minHeight: "100vh",
-    background: "linear-gradient(135deg, #d4fc79, #96e6a1)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontFamily: "Arial, sans-serif",
-  },
-  card: {
-    background: "white",
-    padding: "30px",
-    borderRadius: "16px",
-    width: "100%",
-    maxWidth: "360px",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
-    textAlign: "center",
-  },
-  title: {
-    marginBottom: "8px",
-  },
-  subtitle: {
-    fontSize: "14px",
-    color: "#555",
-    marginBottom: "20px",
-  },
-  select: {
-    width: "100%",
-    padding: "10px",
-    borderRadius: "8px",
-    fontSize: "16px",
-  },
-  result: {
-    marginTop: "20px",
-    padding: "12px",
-    background: "#f1f8e9",
-    borderRadius: "8px",
-    fontSize: "14px",
-  },
-};
