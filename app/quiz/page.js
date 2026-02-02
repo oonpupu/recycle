@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { baseStyles } from "../ui/styles";
@@ -11,16 +11,22 @@ export default function QuizPage() {
   const searchParams = useSearchParams();
 
   const mode = searchParams.get("mode"); // "wrong" | null
-  const wrongOnlyIndices = useMemo(() => {
-    if (mode !== "wrong") return null;
+  const [wrongOnlyIndices, setWrongOnlyIndices] = useState(null);
+
+  useEffect(() => {
+    if (mode !== "wrong") {
+      setWrongOnlyIndices(null);
+      return;
+    }
     try {
-      const raw = sessionStorage.getItem("quizResults");
-      if (!raw) return null;
+      if (typeof window === "undefined") return;
+      const raw = window.sessionStorage.getItem("quizResults");
+      if (!raw) return;
       const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed?.wrong)) return null;
-      return parsed.wrong.filter((n) => Number.isInteger(n));
+      if (!Array.isArray(parsed?.wrong)) return;
+      setWrongOnlyIndices(parsed.wrong.filter((n) => Number.isInteger(n)));
     } catch {
-      return null;
+      // ignore storage errors
     }
   }, [mode]);
 
