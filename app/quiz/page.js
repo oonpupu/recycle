@@ -2,16 +2,26 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { baseStyles } from "../ui/styles";
 import { OPTIONS, QUIZZES } from "../data/recycling";
 
 export default function QuizPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const mode = searchParams.get("mode"); // "wrong" | null
+  const [mode, setMode] = useState(null); // "wrong" | null
   const [wrongOnlyIndices, setWrongOnlyIndices] = useState(null);
+
+  useEffect(() => {
+    // Read mode from URL on client only
+    try {
+      if (typeof window === "undefined") return;
+      const params = new URLSearchParams(window.location.search);
+      const m = params.get("mode");
+      setMode(m === "wrong" ? "wrong" : null);
+    } catch {
+      setMode(null);
+    }
+  }, []);
 
   useEffect(() => {
     if (mode !== "wrong") {
