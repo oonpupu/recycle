@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function Home() {
   const [text, setText] = useState("");
 
-  function showInfo(item: string) {
+  function showInfo(item) {
     if (item === "plastic") setText("Rinse and recycle in plastic bin.");
     else if (item === "paper") setText("Remove staples and recycle as paper.");
     else if (item === "can") setText("Rinse and recycle with metal cans.");
